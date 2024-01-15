@@ -7,7 +7,7 @@
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.0"
   },
-  "homepage": "https://wac6er.github.io/inconsistent_contacts",
+  "homepage": "http://inconsistentcontacts.com/",
 
   "scripts": {
     "start": "react-scripts start",
