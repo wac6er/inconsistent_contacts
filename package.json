@@ -7,7 +7,7 @@
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.0"
   },
-  "homepage": "http://inconsistentcontacts.com/",
+  "homepage": "inconsistentcontacts.com",
 
   "scripts": {
     "start": "react-scripts start",
