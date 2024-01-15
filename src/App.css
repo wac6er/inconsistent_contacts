@@ -1,0 +1,235 @@
+
+An.content {
+    position: relative; 
+}
+.export-button {
+    background-color: grey;
+    color: white;
+    font-family: 'Open+Sans', sans-serif;
+}
+.search-box-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.center-align {
+    text-align: center; /* Aligns content to the right */
+}
+
+.export-button {
+    background-color: grey;
+    color: white;
+}
+
+.search-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px 0px; 
+    position: relative;
+    border-radius: 10px
+}
+.logo {
+    height: 50px; 
+    width: auto; 
+    position: absolute;
+    top: 50%; 
+    right: 20px; 
+    transform: translateY(-50%); 
+}
+
+
+
+.content {
+    padding-top: 20px; 
+}
+
+.header {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+    .header h1 {
+        font-size: 3vw; 
+        font-weight: 700;
+        font-family: 'Open+Sans', sans-serif;
+        color: black;
+        margin: 0;
+    }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+.header h1 {
+    font-family: 'Open+Sans', sans-serif; 
+    /* Other styles */
+}
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    background-image: url("C:\Users\w7car\Downloads\backdrop.png");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+.content {
+    background: rgba(255, 255, 255, 0.8); 
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.company-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.company-item {
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+    .company-item h3 {
+        color: #333;
+        margin: 0 0 10px 0;
+    }
+
+    .company-item a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        .company-item a:hover {
+            text-decoration: underline;
+        }
+
+input[type="text"] {
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+a {
+  color: #1a0dab;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+button {
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Open+Sans', sans-serif;
+}
+employeeButton {
+    padding: 5px 10px;
+    background-color: darkgrey;
+    color: white;
+    justify-content: right;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Open+Sans', sans-serif; /* Use the imported font */
+}
+
+    button:hover {
+        background-color: #218838;
+    }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+td {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+a {
+    color: #1a0dab;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
