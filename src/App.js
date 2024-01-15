@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; // or the appropriate path to your CSS file;
 import logoImage from "./inconsistentLogo.png"
+import ReactGA from 'react-ga';
+ReactGA.initialize('G-VC136BSRFF');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 
 const companies = [
