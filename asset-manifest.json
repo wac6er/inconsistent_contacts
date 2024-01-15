@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/inconsistent_contacts/static/css/main.1dbba143.css",
+    "main.js": "/inconsistent_contacts/static/js/main.9125cf99.js",
+    "static/media/backdrop.png": "/inconsistent_contacts/static/media/backdrop.f43209db11af83549107.png",
+    "static/media/inconsistentLogo.png": "/inconsistent_contacts/static/media/inconsistentLogo.29c4ce4a4a915226d773.png",
+    "index.html": "/inconsistent_contacts/index.html",
+    "main.1dbba143.css.map": "/inconsistent_contacts/static/css/main.1dbba143.css.map",
+    "main.9125cf99.js.map": "/inconsistent_contacts/static/js/main.9125cf99.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1dbba143.css",
+    "static/js/main.9125cf99.js"
+  ]
+}
