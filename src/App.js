@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; // or the appropriate path to your CSS file;
 import logoImage from "./inconsistentLogo.png";
-import companies from "./companies (1).json";
+import companies from "./companies (2).json";
 
 import ReactGA from 'react-ga';
 ReactGA.initialize('G-VC136BSRFF');
