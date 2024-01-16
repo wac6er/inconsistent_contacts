@@ -15,7 +15,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -r https://github.com/wac6er/inconsistent_contacts.git"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

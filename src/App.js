@@ -88,7 +88,7 @@ function CompanyList({ companies, onSelect }) {
                         <td><a href={company.website} target="_blank" rel="noopener noreferrer">{company.website}</a></td>
                         <td class="center-align">
 
-                            <employeeButton onClick={() => onSelect(company)}>View Employees</employeeButton>
+                            <employeeButton onClick={() => onSelect(company)}>Contacts</employeeButton>
                         </td>
                     </tr>
                 ))}
