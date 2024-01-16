@@ -3,6 +3,10 @@ import './App.css'; // or the appropriate path to your CSS file;
 import logoImage from "./inconsistentLogo.png";
 import companies from "./companies (2).json";
 
+import { auth } from './firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import SignIn from './SignIn'; // Import SignIn component
+
 import ReactGA from 'react-ga';
 ReactGA.initialize('G-VC136BSRFF');
 ReactGA.pageview(window.location.pathname + window.location.search);
@@ -99,6 +103,21 @@ function CompanyList({ companies, onSelect }) {
 
 
 function App() {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in
+                setUser(user);
+            } else {
+                // User is signed out
+                setUser(null);
+            }
+        });
+
+        return () => unsubscribe(); // Cleanup subscription on unmount
+    }, []);
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredCompanies, setFilteredCompanies] = useState([]);
     const [selectedCompany, setSelectedCompany] = useState(null);
@@ -151,27 +170,31 @@ function App() {
 
 
     return (
-    <div className="content">
-      <div className="header">
-        <h1>Inconsistent Contacts</h1>
-                <img src={logoImage} alt="Logo" className="logo" />
-      </div>
-            <SearchBox
-                onSearchClick={handleSearch}
-                searchTerm={searchTerm}
-                onSearchTermChange={(e) => setSearchTerm(e.target.value)}
-                onExportCSV={handleExportCSV} // Passing the function as a prop
-            />
-            {!selectedCompany ? (
-                <CompanyList companies={filteredCompanies} onSelect={handleSelectCompany} />
+        <div className="content">
+            {!user ? (
+                <SignIn />
             ) : (
-                <CompanyDetails company={selectedCompany} onBack={() => setSelectedCompany(null)} />
+                <>
+                    <div className="header">
+                        <h1>Inconsistent Contacts</h1>
+                        <img src={logoImage} alt="Logo" className="logo" />
+                    </div>
+                    <SearchBox
+                        onSearchClick={handleSearch}
+                        searchTerm={searchTerm}
+                        onSearchTermChange={(e) => setSearchTerm(e.target.value)}
+                        onExportCSV={handleExportCSV}
+                    />
+                    {!selectedCompany ? (
+                        <CompanyList companies={filteredCompanies} onSelect={handleSelectCompany} />
+                    ) : (
+                        <CompanyDetails company={selectedCompany} onBack={() => setSelectedCompany(null)} />
+                    )}
+                </>
             )}
-
-
-      {/* Rest of your component */}
-    </div>
+        </div>
     );
+
 }
 
 
