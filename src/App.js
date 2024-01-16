@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; // or the appropriate path to your CSS file;
 import logoImage from "./inconsistentLogo.png";
-import companies from "./companies (2).json";
+import companies from "./companies (3).json";
 
 import { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -156,7 +156,6 @@ function App() {
         document.body.removeChild(a);
     };
 
-
     const handleSearch = () => {
         const filtered = companies.filter(company =>
             company.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -166,8 +165,6 @@ function App() {
     const handleSelectCompany = (company) => {
         setSelectedCompany(company);
     };
-
-
 
     return (
         <div className="content">
