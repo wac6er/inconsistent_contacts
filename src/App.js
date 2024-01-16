@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; // or the appropriate path to your CSS file;
-import logoImage from "./inconsistentLogo.png"
+import logoImage from "./inconsistentLogo.png";
+import companies from "./companies.json";
+
 import ReactGA from 'react-ga';
 ReactGA.initialize('G-VC136BSRFF');
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 
-const companies = [
-    { name: 'Company A', industry: 'IA', website: 'WA', employees: [{ name: 'Employee A1', title: 'Title A1', linkedIn: 'LinkedIn A1' }] },
-    { name: 'Company B', industry: 'IB', website: 'WB', employees: [{ name: 'Employee B1', title: 'Title B1', linkedIn: 'LinkedIn B1' }] },
-    { name: 'Company C', industry: 'IC', website: 'WC', employees: [{ name: 'Employee C1', title: 'Title C1', linkedIn: 'LinkedIn C1' }] },
-];
+
+
 function SearchBox({ onSearchClick, searchTerm, onSearchTermChange, onExportCSV }) {
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
