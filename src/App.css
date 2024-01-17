@@ -11,9 +11,11 @@ An.content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
 }
 
+smallButton{
+    background-color:grey
+}
 .center-align {
     text-align: center; /* Aligns content to the right */
 }

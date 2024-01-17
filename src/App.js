@@ -81,6 +81,7 @@ function CompanyList({ companies, onSelect }) {
             <thead>
                 <tr>
                     <th>Company Name</th>
+                    <th>Tags</th>
                     <th>Website</th>
                     <th>Employees</th>
                 </tr>
@@ -89,6 +90,7 @@ function CompanyList({ companies, onSelect }) {
                 {companies.map((company, index) => (
                     <tr key={index}>
                         <td>{company.name}</td>
+                        <td>{company.tag }</td>
                         <td><a href={company.website} target="_blank" rel="noopener noreferrer">{company.website}</a></td>
                         <td class="center-align">
 
@@ -123,28 +125,27 @@ function App() {
     const [selectedCompany, setSelectedCompany] = useState(null);
     const handleExportCSV = () => {
         const csvRows = [];
-        // Headers
+
         csvRows.push('Company Name, Industry, Website, Employee Name, Employee Title, Employee Email');
 
-        // Data
         filteredCompanies.slice(0, 50).forEach(company => {
             company.employees.forEach(employee => {
                 const row = [
                     company.name,
-                    company.industry,
+                    company.tag,
                     company.website,
                     employee.name,
                     employee.title,
-                    employee.email // Assuming 'email' is a property of each employee
+                    employee.email 
                 ];
                 csvRows.push(row.join(','));
             });
         });
 
-        // Convert Array to string
+
         const csvString = csvRows.join('\n');
 
-        // Download it as a file
+
         const blob = new Blob([csvString], { type: 'text/csv' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -156,44 +157,59 @@ function App() {
         document.body.removeChild(a);
     };
 
-    const handleSearch = () => {
-        const filtered = companies.filter(company =>
-            company.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        setFilteredCompanies(filtered);
-    };
+
     const handleSelectCompany = (company) => {
         setSelectedCompany(company);
     };
+
+
+
+    const [searchCount, setSearchCount] = useState(0);
+    const [promptRegister, setPromptRegister] = useState(false);
+
+    const handleSearch = () => {
+        const filtered = companies.filter(company =>
+            company.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            (company.tag && company.tag.toLowerCase().includes(searchTerm.toLowerCase()))
+        );
+        setFilteredCompanies(filtered);
+
+        setSearchCount(prevCount => prevCount + 1);
+    };
+
+    useEffect(() => {
+        if (searchCount >= 10 && !user) {
+            setPromptRegister(true);
+        }
+    }, [searchCount, user]);
+
 
     return (
         <div className="content">
             {!user ? (
                 <SignIn />
+            ) : promptRegister ? (
+                // Prompt to register after 10 searches
+                <div>
+                    <p>Please register to continue using the search feature.</p>
+                    <SignIn />
+                </div>
             ) : (
+                // Normal content
                 <>
-                    <div className="header">
-                        <h1>Inconsistent Contacts</h1>
-                        <img src={logoImage} alt="Logo" className="logo" />
-                    </div>
+                    {/* ... */}
                     <SearchBox
                         onSearchClick={handleSearch}
                         searchTerm={searchTerm}
                         onSearchTermChange={(e) => setSearchTerm(e.target.value)}
                         onExportCSV={handleExportCSV}
                     />
-                    {!selectedCompany ? (
-                        <CompanyList companies={filteredCompanies} onSelect={handleSelectCompany} />
-                    ) : (
-                        <CompanyDetails company={selectedCompany} onBack={() => setSelectedCompany(null)} />
-                    )}
+                    {/* ... */}
                 </>
             )}
         </div>
     );
-
 }
-
 
 
 export default App;
