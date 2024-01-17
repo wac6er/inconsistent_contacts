@@ -106,6 +106,10 @@ function CompanyList({ companies, onSelect }) {
 
 function App() {
     const [user, setUser] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredCompanies, setFilteredCompanies] = useState([]);
+    const [selectedCompany, setSelectedCompany] = useState(null);
+    const [searchCount, setSearchCount] = useState(0); // New state variable to track search count
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -120,9 +124,7 @@ function App() {
 
         return () => unsubscribe(); // Cleanup subscription on unmount
     }, []);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [filteredCompanies, setFilteredCompanies] = useState([]);
-    const [selectedCompany, setSelectedCompany] = useState(null);
+
     const handleExportCSV = () => {
         const csvRows = [];
 
@@ -157,59 +159,44 @@ function App() {
         document.body.removeChild(a);
     };
 
-
-    const handleSelectCompany = (company) => {
-        setSelectedCompany(company);
-    };
-
-
-
-    const [searchCount, setSearchCount] = useState(0);
-    const [promptRegister, setPromptRegister] = useState(false);
-
     const handleSearch = () => {
         const filtered = companies.filter(company =>
             company.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             (company.tag && company.tag.toLowerCase().includes(searchTerm.toLowerCase()))
         );
         setFilteredCompanies(filtered);
-
-        setSearchCount(prevCount => prevCount + 1);
+        setSearchCount(prevCount => prevCount + 1); // Increment search count
     };
 
-    useEffect(() => {
-        if (searchCount >= 10 && !user) {
-            setPromptRegister(true);
-        }
-    }, [searchCount, user]);
-
+    const handleSelectCompany = (company) => {
+        setSelectedCompany(company);
+    };
 
     return (
         <div className="content">
-            {!user ? (
-                <SignIn />
-            ) : promptRegister ? (
-                // Prompt to register after 10 searches
-                <div>
-                    <p>Please register to continue using the search feature.</p>
-                    <SignIn />
-                </div>
-            ) : (
-                // Normal content
+            {searchCount < 10 || user ? ( // Modified condition to check searchCount
                 <>
-                    {/* ... */}
+                    <div className="header">
+                        <h1>Inconsistent Contacts</h1>
+                        <img src={logoImage} alt="Logo" className="logo" />
+                    </div>
                     <SearchBox
                         onSearchClick={handleSearch}
                         searchTerm={searchTerm}
                         onSearchTermChange={(e) => setSearchTerm(e.target.value)}
                         onExportCSV={handleExportCSV}
                     />
-                    {/* ... */}
+                    {!selectedCompany ? (
+                        <CompanyList companies={filteredCompanies} onSelect={handleSelectCompany} />
+                    ) : (
+                        <CompanyDetails company={selectedCompany} onBack={() => setSelectedCompany(null)} />
+                    )}
                 </>
+            ) : (
+                <SignIn /> // This will be rendered only when searchCount is 10 or more and the user is not logged in
             )}
         </div>
     );
 }
-
 
 export default App;
