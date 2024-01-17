@@ -8,7 +8,7 @@
         const [password, setPassword] = useState('');
         const [isNewUser, setIsNewUser] = useState(true);
         const [error, setError] = useState('');
-        const [showPassword, setShowPassword] = useState(true);
+        const [showPassword, setShowPassword] = useState(false);
 
         const handleSignIn = async (event) => {
             event.preventDefault(); // Prevents the default form submission behavior
@@ -69,7 +69,7 @@
                         <button type="submit">{isNewUser ? 'Register' : 'Sign In'}</button>
                     </div>
                     <div style={{ marginTop: '10px' }}>
-                        <button type="button" class-name="smallButton" onClick={() => setIsNewUser(!isNewUser)}>
+                        <button type="button" onClick={() => setIsNewUser(!isNewUser)}>
                             {isNewUser ? 'Already have an account? Sign In' : 'New user? Register'}
                         </button>
                     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; // or the appropriate path to your CSS file;
 import logoImage from "./inconsistentLogo.png";
-import companies from "./companies (3).json";
+import companies from "./companies (6).json";
 
 import { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -90,7 +90,7 @@ function CompanyList({ companies, onSelect }) {
                 {companies.map((company, index) => (
                     <tr key={index}>
                         <td>{company.name}</td>
-                        <td>{company.tag }</td>
+                        <td>{company.tag}</td>
                         <td><a href={company.website} target="_blank" rel="noopener noreferrer">{company.website}</a></td>
                         <td class="center-align">
 
