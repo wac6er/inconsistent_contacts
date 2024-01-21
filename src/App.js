@@ -127,7 +127,7 @@ function App() {
     const handleExportCSV = () => {
         const csvRows = [];
 
-        csvRows.push('Company Name, Industry, Website, Employee Name, Employee Title, Employee Email');
+        csvRows.push('Company Name, Tag 1, Tag 2, Tag 3, Website, Name, Title, Email');
 
         filteredCompanies.slice(0, 50).forEach(company => {
             company.employees.forEach(employee => {
