@@ -80,7 +80,7 @@ function CompanyList({ companies, onSelect }) {
             <thead>
                 <tr>
                     <th>Company Name</th>
-                    <th>Tags</th>
+                    <th>Industry Tags</th>
                     <th>Website</th>
                     <th>Employees</th>
                 </tr>
