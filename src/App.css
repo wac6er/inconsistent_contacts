@@ -1,4 +1,12 @@
 
+@media screen and (max-width: 768px) {
+    header {
+        /* Adjust header styling for mobile */
+    }
+
+    /* Additional mobile-specific styles */
+}
+
 An.content {
     position: relative; 
 }
@@ -83,7 +91,7 @@ body, html {
 }
 
 body {
-    background-image: url("C:\Users\w7car\Downloads\backdrop.png");
+    background-image: url("C:\Users\w7car\source\repos\inconsistentContacts\inconsistentContacts\public\backdrop.png");
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
