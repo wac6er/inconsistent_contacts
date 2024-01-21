@@ -162,7 +162,7 @@ function App() {
                 company.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 (company.tag && company.tag.toLowerCase().includes(searchTerm.toLowerCase()))
             )
-            .slice(0, 25); // Limit the results to the first 25 companies
+            .slice(0, 40); // Limit the results to the first 25 companies
         setFilteredCompanies(filtered);
         setSelectedCompany(null); // Reset selected company when a new search is performed
         setSearchCount(prevCount => prevCount + 1); // Increment search count
