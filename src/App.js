@@ -175,7 +175,7 @@ function App() {
 
     return (
         <div className="content">
-            {searchCount < 10 || user ? ( // Modified condition to check searchCount
+            {searchCount < 10 || user ? (
                 <>
                     <div className="header">
                         <h1>Inconsistent Contacts</h1>
@@ -187,6 +187,19 @@ function App() {
                         onSearchTermChange={(e) => setSearchTerm(e.target.value)}
                         onExportCSV={handleExportCSV}
                     />
+                    {filteredCompanies.length === 0 && !selectedCompany && (
+                        <p style={{ marginTop: '20px', fontSize: '0.9rem' }}>
+                            Welcome to our <b>open-source web scraping initiative</b>! Our goal is to break down the <b>barriers surrounding B2B communications</b> by offering a <b>free, reliable source</b> for lead generation.
+                            <br />
+                            <br />
+                            By leveraging the power of web scraping, we aim to make <b>email and LinkedIn communication</b> more accessible and efficient, especially for small businesses and entrepreneurs.
+                            <br />
+                            <br />
+                            <b>Your involvement is vital to our mission.</b>
+                            <br />
+                            <br />
+                            If you wish to <b>contribute</b> to the site's data management or have suggestions, please reach out to us at <b><a href="mailto:wac6er@virginia.edu">wac6er@virginia.edu</a></b>. To support our project further, consider visiting our <b>GoFundMe</b> page at <a href="https://gofund.me/5286faf4" target="_blank">gofundme/inconsistentContacts</a>. Thank you for joining us in this venture!
+                        </p>                    )}
                     {!selectedCompany ? (
                         <CompanyList companies={filteredCompanies} onSelect={handleSelectCompany} />
                     ) : (
@@ -194,7 +207,7 @@ function App() {
                     )}
                 </>
             ) : (
-                <SignIn /> // This will be rendered only when searchCount is 10 or more and the user is not logged in
+                <SignIn />
             )}
         </div>
     );
