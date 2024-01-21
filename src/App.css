@@ -15,6 +15,17 @@ An.content {
     color: white;
     font-family: 'Open+Sans', sans-serif;
 }
+
+back-button {
+    padding: 3px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Open+Sans', sans-serif;
+}
 .search-box-container {
     display: flex;
     justify-content: space-between;

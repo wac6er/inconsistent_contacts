@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; // or the appropriate path to your CSS file;
 import logoImage from "./inconsistentLogo.png";
-import companies from "./companies (7).json";
+import companies from "./companies (8).json";
 
 import { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -10,8 +10,6 @@ import SignIn from './SignIn'; // Import SignIn component
 import ReactGA from 'react-ga';
 ReactGA.initialize('G-VC136BSRFF');
 ReactGA.pageview(window.location.pathname + window.location.search);
-
-
 
 
 function SearchBox({ onSearchClick, searchTerm, onSearchTermChange, onExportCSV }) {
@@ -44,6 +42,7 @@ function CompanyDetails({ company, onBack }) {
 
     return (
         <div>
+            <back-button onClick={onBack}>Back</back-button>
             <h2>{company.name}</h2>
             <p>Website: <a href={company.website} target="_blank" rel="noopener noreferrer">{company.website}</a></p>
             <h3>Employees</h3>
@@ -69,7 +68,7 @@ function CompanyDetails({ company, onBack }) {
                     ))}
                 </tbody>
             </table>
-            <button onClick={onBack}>Back</button>
+            <back-button onClick={onBack}>Back</back-button>
         </div>
     );
 }
@@ -146,8 +145,6 @@ function App() {
 
 
         const csvString = csvRows.join('\n');
-
-
         const blob = new Blob([csvString], { type: 'text/csv' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -165,6 +162,7 @@ function App() {
             (company.tag && company.tag.toLowerCase().includes(searchTerm.toLowerCase()))
         );
         setFilteredCompanies(filtered);
+        setSelectedCompany(null); // Reset selected company when new search is performed
         setSearchCount(prevCount => prevCount + 1); // Increment search count
     };
 
