@@ -157,14 +157,17 @@ function App() {
     };
 
     const handleSearch = () => {
-        const filtered = companies.filter(company =>
-            company.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            (company.tag && company.tag.toLowerCase().includes(searchTerm.toLowerCase()))
-        );
+        const filtered = companies
+            .filter(company =>
+                company.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                (company.tag && company.tag.toLowerCase().includes(searchTerm.toLowerCase()))
+            )
+            .slice(0, 25); // Limit the results to the first 25 companies
         setFilteredCompanies(filtered);
-        setSelectedCompany(null); // Reset selected company when new search is performed
+        setSelectedCompany(null); // Reset selected company when a new search is performed
         setSearchCount(prevCount => prevCount + 1); // Increment search count
     };
+
 
     const handleSelectCompany = (company) => {
         setSelectedCompany(company);
