@@ -7,6 +7,61 @@
     /* Additional mobile-specific styles */
 }
 
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tab-buttons {
+    color: grey;
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+}
+
+.title-and-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px; /* This adds space between the tab buttons and the title/logo */
+}
+
+.logo {
+    margin-left: 10px;
+}
+.tab-buttons button {
+    padding: 5px 5px; /* Adjust padding to make buttons larger and more clickable */
+    margin: 0 5px; /* Adds space between the buttons */
+    border: none;
+    border-radius: 5px; /* Gives buttons rounded corners */
+    background-color: darkslategray; /* Set the background color to black */
+    color: #ffffff; /* Set the text color to white */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+    .tab-buttons button:hover {
+        background-color: #333333; /* Slightly lighter black on hover for a subtle effect */
+    }
+.button {
+    padding: 10px 20px; /* Adjust padding to make buttons larger and more clickable */
+    margin: 0 5px; /* Adds space between the buttons */
+    border: none;
+    border-radius: 5px; /* Gives buttons rounded corners */
+    background-color: #000000; /* Set the background color to black */
+    color: #ffffff; /* Set the text color to white */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+    .button:hover {
+        background-color: #333333; /* Slightly lighter black on hover for a subtle effect */
+    }
+.logo {
+    margin-left: 10px;
+}
+
 An.content {
     position: relative; 
 }

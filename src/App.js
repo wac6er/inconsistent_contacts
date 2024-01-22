@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; // or the appropriate path to your CSS file;
 import logoImage from "./inconsistentLogo.png";
-import companies from "./companies (13).json";
+import companies from "./companies (14).json";
 
 import { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -102,6 +102,33 @@ function CompanyList({ companies, onSelect }) {
     );
 };
 
+function CustomDatasetsTab() {
+    return (
+        <div>
+            <h2>Custom Data Submissions</h2>
+            <p>Welcome to our platform, driven by a group of <strong>University of Virginia</strong> students and alumni with a deep passion for <strong>web scraping</strong> and data analysis.</p>
+
+            <p>We're excited to offer:</p>
+            <ul>
+                <li><strong>1) Comprehensive Lead Generation:</strong> A broad lead gen service for the public at no cost.</li>
+                <br />
+                <li><strong>2) Specialized Projects:</strong> Customized solutions for clients in various sectors, including energy, marketing, DTC campaigns and more.</li>
+                <br />
+                <li><strong>3) B2B Target Market Penetration:</strong> Generating business lists with essential contact and LinkedIn information.</li>
+            </ul>
+
+            <p>Here are some of our successes:</p>
+            <ul>
+                <li><strong>Case Study 1:</strong> Identified over 2,000 hot-water intensive businesses without natural gas access in Connecticut for a commercial client, providing 8,000+ employee contacts.</li>
+                <li><strong>Case Study 2:</strong> For a consumer product campaign, curated a list of 10,000+ residential contacts in affluent neighborhoods, all for a substantial yet cost-effective fee.</li>
+                <li><strong>Case Study 3:</strong> Compiled a list of 1,000 companies with active ML/AI hiring campaigns on Indeed, including 600 recruiter contacts.</li>
+            </ul>
+
+            <p>Whether you're a burgeoning startup or an established corporation, our data can offer you a competitive edge. Interested in learning more? Get in touch at <strong><a href="mailto:wac6er@virginia.edu">wac6er@virginia.edu</a></strong> for tailored data solutions that suit your specific business needs.</p>
+        </div>
+    );
+}
+
 
 function App() {
     const [user, setUser] = useState(null);
@@ -109,6 +136,7 @@ function App() {
     const [filteredCompanies, setFilteredCompanies] = useState([]);
     const [selectedCompany, setSelectedCompany] = useState(null);
     const [searchCount, setSearchCount] = useState(0); // New state variable to track search count
+    const [currentTab, setCurrentTab] = useState('companies'); // Initialize the currentTab state
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -173,42 +201,57 @@ function App() {
         setSelectedCompany(company);
     };
 
+
     return (
         <div className="content">
-            {searchCount < 10 || user ? (
+            <div className="header">
+                <div className="tab-buttons">
+                    <button onClick={() => setCurrentTab('companies')}>Public Company Search</button>
+                    <button onClick={() => setCurrentTab('customDatasets')}>Custom Dataset Submissions</button>
+                </div>
+                <div className="title-and-logo">
+                    <h1>Inconsistent Contacts</h1>
+                    <img src={logoImage} alt="Logo" className="logo" />
+                </div>
+            </div>
+
+            {currentTab === 'companies' && (
                 <>
-                    <div className="header">
-                        <h1>Inconsistent Contacts</h1>
-                        <img src={logoImage} alt="Logo" className="logo" />
-                    </div>
-                    <SearchBox
-                        onSearchClick={handleSearch}
-                        searchTerm={searchTerm}
-                        onSearchTermChange={(e) => setSearchTerm(e.target.value)}
-                        onExportCSV={handleExportCSV}
-                    />
-                    {filteredCompanies.length === 0 && !selectedCompany && (
-                        <p style={{ marginTop: '20px', fontSize: '0.9rem' }}>
-                            Welcome to our <b>open-source web scraping initiative</b>! Our goal is to break down the <b>barriers surrounding B2B communications</b> by offering a <b>free, reliable source</b> for lead generation.
-                            <br />
-                            <br />
-                            By leveraging the power of web scraping, we aim to make <b>email and LinkedIn communication</b> more accessible and efficient, especially for small businesses and entrepreneurs.
-                            <br />
-                            <br />
-                            <b>Your involvement is vital to our mission.</b>
-                            <br />
-                            <br />
-                            If you wish to <b>contribute</b> to the site's data management or have suggestions, please reach out to us at <b><a href="mailto:wac6er@virginia.edu">wac6er@virginia.edu</a></b>. To support our project further, consider visiting our <b>GoFundMe</b> page at <a href="https://gofund.me/5286faf4" target="_blank">gofundme/inconsistentContacts</a>. Thank you for joining us in this venture!
-                        </p>                    )}
-                    {!selectedCompany ? (
-                        <CompanyList companies={filteredCompanies} onSelect={handleSelectCompany} />
+                    {searchCount < 10 || user ? (
+                        <>
+                            <SearchBox
+                                onSearchClick={handleSearch}
+                                searchTerm={searchTerm}
+                                onSearchTermChange={(e) => setSearchTerm(e.target.value)}
+                                onExportCSV={handleExportCSV}
+                            />
+                            {filteredCompanies.length === 0 && !selectedCompany && (
+                                <p style={{ marginTop: '20px', fontSize: '0.9rem' }}>
+                                    Welcome to our <b>open-source web scraping initiative</b>! Our goal is to break down the <b>barriers surrounding B2B communications</b> by offering a <b>free, reliable source</b> for lead generation.
+                                    <br />
+                                    <br />
+                                    By leveraging the power of web scraping, we aim to make <b>email and LinkedIn communication</b> more accessible and efficient, especially for small businesses and entrepreneurs.
+                                    <br />
+                                    <br />
+                                    <b>Your involvement is vital to our mission.</b>
+                                    <br />
+                                    <br />
+                                    If you wish to <b>contribute</b> to the site's data management or have suggestions, please reach out to us at <b><a href="mailto:wac6er@virginia.edu">wac6er@virginia.edu</a></b>. To support our project further, consider visiting our <b>GoFundMe</b> page at <a href="https://gofund.me/5286faf4" target="_blank">gofundme/inconsistentContacts</a>. Thank you for joining us in this venture!
+                                </p>
+                            )}
+                            {!selectedCompany ? (
+                                <CompanyList companies={filteredCompanies} onSelect={handleSelectCompany} />
+                            ) : (
+                                <CompanyDetails company={selectedCompany} onBack={() => setSelectedCompany(null)} />
+                            )}
+                        </>
                     ) : (
-                        <CompanyDetails company={selectedCompany} onBack={() => setSelectedCompany(null)} />
+                        <SignIn />
                     )}
                 </>
-            ) : (
-                <SignIn />
             )}
+
+            {currentTab === 'customDatasets' && <CustomDatasetsTab />}
         </div>
     );
 }
