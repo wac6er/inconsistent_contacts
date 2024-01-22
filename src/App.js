@@ -120,7 +120,9 @@ function CustomDatasetsTab() {
             <p>Here are some of our successes:</p>
             <ul>
                 <li><strong>Case Study 1:</strong> Identified over 2,000 hot-water intensive businesses without natural gas access in Connecticut for a commercial client, providing 8,000+ employee contacts.</li>
+                <br />
                 <li><strong>Case Study 2:</strong> For a consumer product campaign, curated a list of 10,000+ residential contacts in affluent neighborhoods, all for a substantial yet cost-effective fee.</li>
+                <br />
                 <li><strong>Case Study 3:</strong> Compiled a list of 1,000 companies with active ML/AI hiring campaigns on Indeed, including 600 recruiter contacts.</li>
             </ul>
 
