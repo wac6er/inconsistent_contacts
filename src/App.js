@@ -152,25 +152,42 @@ function App() {
         return () => unsubscribe(); // Cleanup subscription on unmount
     }, []);
 
+
     const handleExportCSV = () => {
         const csvRows = [];
+        csvRows.push('Company Name, Industry Tags, Website, Name, Title, Email');
 
-        csvRows.push('Company Name, Tag 1, Tag 2, Tag 3, Website, Name, Title, Email');
+        const formatCell = (cell) => `"${cell.replace(/"/g, '""')}"`; 
 
-        filteredCompanies.slice(0, 50).forEach(company => {
-            company.employees.forEach(employee => {
+        if (selectedCompany) {
+            // Export only the selected company
+            selectedCompany.employees.forEach(employee => {
                 const row = [
-                    company.name,
-                    company.tag,
-                    company.website,
-                    employee.name,
-                    employee.title,
-                    employee.email 
+                    formatCell(selectedCompany.name),
+                    formatCell(selectedCompany.tag),
+                    formatCell(selectedCompany.website),
+                    formatCell(employee.name),
+                    formatCell(employee.title),
+                    formatCell(employee.email)
                 ];
                 csvRows.push(row.join(','));
             });
-        });
-
+        } else {
+            // Fallback: export first 50 companies or nothing
+            filteredCompanies.slice(0, 50).forEach(company => {
+                company.employees.forEach(employee => {
+                    const row = [
+                        formatCell(company.name),
+                        formatCell(company.tag),
+                        formatCell(company.website),
+                        formatCell(employee.name),
+                        formatCell(employee.title),
+                        formatCell(employee.email)
+                    ];
+                    csvRows.push(row.join(','));
+                });
+            });
+        }
 
         const csvString = csvRows.join('\n');
         const blob = new Blob([csvString], { type: 'text/csv' });
@@ -183,6 +200,7 @@ function App() {
         a.click();
         document.body.removeChild(a);
     };
+    
 
     const handleSearch = () => {
         const filtered = companies
