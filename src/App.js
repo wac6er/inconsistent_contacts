@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; // or the appropriate path to your CSS file;
 import logoImage from "./inconsistentLogo.png";
-import companies from "./companies (14).json";
+import companies from "./companies (15).json";
 
 import { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
